@@ -1,6 +1,4 @@
 #pragma once
-#include <cmath>
-#include <limits>
 
 namespace ExtMath
 {
@@ -11,10 +9,7 @@ namespace ExtMath
      * \param epsilon
      * \return
      */
-    inline bool AreEqual(const double x, const double y, const double epsilon)
-    {
-        return std::abs(x - y) <= epsilon;
-    }
+    bool AreEqual(const double x, const double y, const double epsilon);
 
     /**
      * \brief
@@ -22,8 +17,20 @@ namespace ExtMath
      * \param y
      * \return
      */
-    inline bool AreEqual(const double x, const double y)
-    {
-        return AreEqual(x, y, std::numeric_limits<double>::epsilon());
-    }
+    bool AreEqual(const double x, const double y);
+
+    /**
+     * \brief 
+     * \param value 
+     * \param epsilon 
+     * \return 
+     */
+    bool IsZero(const double value, const double epsilon);
+
+    /**
+     * \brief 
+     * \param value 
+     * \return 
+     */
+    bool IsZero(const double value);
 }

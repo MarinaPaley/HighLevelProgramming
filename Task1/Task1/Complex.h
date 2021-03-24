@@ -53,7 +53,7 @@ public:
      * \brief Метод, возвращающий комплексно сопряженное число
      * \return Комплексно сопряженное число
      */
-    Complex GetConjugate() const;
+    Complex& GetConjugate() const;
 
     /**
      * \brief Алгебраическое представление комплексного числа
@@ -110,6 +110,8 @@ public:
     bool AreEqual(const Complex& other) const;
 
 private:
+    char getSignForImagePart() const;
+
     /**
      * \brief Действительная часть комплексного числа.
      */

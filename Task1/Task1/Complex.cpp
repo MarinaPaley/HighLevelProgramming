@@ -32,25 +32,54 @@ double Complex::GetModulus() const
 
 double Complex::GetArgument() const
 {
-    const auto x = this->GetRe();
-    const auto y = this->GetIm();
-    if (x > 0 && !ExtMath::AreEqual(y, 0.0))
-        return 2 * atan(y / (this->GetModulus() + x));
-    if (x < 0 && y == 0)
-        return M_PI;
-    return NAN;
+    // TODO: Необходимо протестировать данное предположение на валидность.
+    // за     -- see: https://en.wikipedia.org/wiki/Complex_number#Polar_complex_plane
+    // против -- see: https://math.semestr.ru/math/images/argz.gif
+    return std::atan2(this->GetRe(), this->GetIm());
 }
 
-Complex Complex::GetConjugate() const
+Complex& Complex::GetConjugate() const
 {
-    return Complex(this->GetRe(), -1 * this->GetIm());
+    const auto conjugate = new Complex(this->GetRe(), -1 * this->GetIm());
+    return *conjugate;
 }
 
 std::string Complex::GetAlgebraView() const
 {
     std::stringstream buffer;
     buffer << this->GetRe() << " "
-        << (std::signbit(this->GetIm()) ? "-" : "+") << " "
-        << std::abs(this->GetIm()) << "i";
+        << this->getSignForImagePart() << " "
+        << std::abs(this->GetIm()) << "\\i";
     return buffer.str();
+}
+
+std::string Complex::GetTrigonometryView() const
+{
+    std::stringstream buffer;
+    buffer << "\\exp(" << this->GetRe() << ")" 
+        << " \\cdot (\\cos(" << std::abs(this->GetIm()) << ")"
+        << " " << this->getSignForImagePart() << " "
+        << "\\i \\cdot \\sin(" << std::abs(this->GetIm()) << ")"
+        << ")";
+    return buffer.str();
+}
+
+std::string Complex::GetExponentialView() const
+{
+    std::stringstream buffer;
+    buffer << "\\exp(" << this->GetAlgebraView() << ")";
+    return buffer.str();
+}
+
+Complex& Complex::Add(const Complex& other) const
+{
+    const auto re = this->GetRe() + other.GetRe();
+    const auto im = this->GetIm() + other.GetIm();
+    const auto  sum = new Complex(re, im);
+    return *sum;
+}
+
+char Complex::getSignForImagePart() const
+{
+    return std::signbit(this->GetIm()) ? '-' : '+';
 }
