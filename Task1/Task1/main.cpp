@@ -26,5 +26,8 @@ int main()
     cout << "z_2  = " << z2.GetAlgebraView();
     cout << "\nz_3 = " << z3.GetAlgebraView();
 
+    const auto z4 = z0.Add(1);
+    cout << "\nz_4 = "<< z4.GetAlgebraView() << endl;
+
     return 0;
 }
