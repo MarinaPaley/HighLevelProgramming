@@ -38,10 +38,9 @@ double Complex::GetArgument() const
     return std::atan2(this->GetRe(), this->GetIm());
 }
 
-Complex& Complex::GetConjugate() const
-{
-    const auto conjugate = new Complex(this->GetRe(), -1 * this->GetIm());
-    return *conjugate;
+Complex Complex::GetConjugate() const
+{ 
+    return Complex(this->GetRe(), -1 * this->GetIm());
 }
 
 std::string Complex::GetAlgebraView() const

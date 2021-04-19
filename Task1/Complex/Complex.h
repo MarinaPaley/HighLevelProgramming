@@ -21,6 +21,13 @@ public:
     Complex(const Complex& other);
 
     /**
+     * \brief Перемещающий конструктор
+     * \param other другое комплексное число
+     */
+    Complex(Complex&& other) = default;
+
+
+    /**
      * \brief Деструктор
      */
     ~Complex() = default;
@@ -53,7 +60,7 @@ public:
      * \brief Метод, возвращающий комплексно сопряженное число
      * \return Комплексно сопряженное число
      */
-    Complex& GetConjugate() const;
+    Complex GetConjugate() const;
 
     /**
      * \brief Алгебраическое представление комплексного числа
