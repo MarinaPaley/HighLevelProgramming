@@ -4,8 +4,8 @@
 using namespace std;
 
 /**
- * \brief 
- * \return 
+ * \brief Точка входа в программу.
+ * \return Код ошибки (0 - успех).
  */
 int main()
 {
