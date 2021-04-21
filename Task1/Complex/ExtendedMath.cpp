@@ -2,22 +2,22 @@
 #include <cmath>
 #include <limits>
 
-inline bool ExtMath::AreEqual(const double x, const double y, const double epsilon)
+bool ExtMath::AreEqual(const double x, const double y, const double epsilon)
 {
-    return std::abs(x - y) <= epsilon;
+    return std::abs(x - y) <= std::abs(epsilon);
 }
 
-inline bool ExtMath::AreEqual(const double x, const double y)
+bool ExtMath::AreEqual(const double x, const double y)
 {
     return AreEqual(x, y, std::numeric_limits<double>::epsilon());
 }
 
-inline bool ExtMath::IsZero(const double value, const double epsilon)
+bool ExtMath::IsZero(const double value, const double epsilon)
 {
     return AreEqual(value, 0, epsilon);
 }
 
-inline bool ExtMath::IsZero(const double value)
+bool ExtMath::IsZero(const double value)
 {
     return AreEqual(value, 0);
 }

@@ -22,7 +22,7 @@ namespace UnitTestComplex
             Assert::AreEqual(
                 expected,
                 actual,
-                L"Неправильно вычислено комплексно сопряженное");
+                L"Неправильно вычислено комплексно-сопряженное");
         }
     };
 }

@@ -5,6 +5,18 @@
 #include "Complex.h"
 #include "ExtendedMath.h"
 
+bool operator==(const Complex& lha, const Complex& rha)
+{
+    return lha.AreEqual(rha);
+}
+
+std::wstring ToString(const Complex& arg)
+{
+    std::wstringstream buffer;
+    buffer << L"<" << arg.GetRe() << L"; " << arg.GetIm() << L">";
+    return buffer.str();;
+}
+
 Complex::Complex(const double re, const double im)
     : re(re), im(im)
 {
@@ -76,6 +88,12 @@ Complex& Complex::Add(const Complex& other) const
     const auto im = this->GetIm() + other.GetIm();
     const auto  sum = new Complex(re, im);
     return *sum;
+}
+
+bool Complex::AreEqual(const Complex& other) const
+{
+    return ExtMath::AreEqual(this->GetRe(), other.GetRe())
+        && ExtMath::AreEqual(this->GetIm(), other.GetIm());
 }
 
 char Complex::getSignForImagePart() const

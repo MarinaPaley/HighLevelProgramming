@@ -1,6 +1,12 @@
 #pragma once
 #include <string>
 
+class Complex;
+
+bool operator==(const Complex& lha, const Complex& rha);
+
+std::wstring ToString(const Complex& arg);
+
 /**
  * \brief Класс Комплексное число
  */
