@@ -1,6 +1,12 @@
 #pragma once
 #include <string>
 
+class Complex;
+
+bool operator==(const Complex& lha, const Complex& rha);
+
+std::wstring ToString(const Complex& arg);
+
 /**
  * \brief Класс Комплексное число
  */
@@ -8,51 +14,59 @@ class Complex
 {
 public:
     /**
-     * \brief Конструктор по умолчанию
-     */
-    Complex() {};
-
-    /**
      * \brief Конструктор с параметрами
      * \param re Действительная часть
      * \param im Мнимая часть
      */
-    Complex(const double re, const double im);
+    Complex(const double re = 0, const double im = 0);
+
     /**
      * \brief Конструктор копирования
      * \param other Комплексное число
      */
     Complex(const Complex& other);
+
+    /**
+     * \brief Перемещающий конструктор
+     * \param other другое комплексное число
+     */
+    Complex(Complex&& other) = default;
+
+
     /**
      * \brief Деструктор
      */
-    ~Complex();
+    ~Complex() = default;
 
     /**
      * \brief Метод, возвращающий действительную часть
      * \return Действительная часть комплексного числа
      */
     double GetRe() const;
+
     /**
      * \brief Метод, возвращающий мнимую часть
      * \return Мнимая часть комплексного числа
      */
     double GetIm() const;
+
     /**
      * \brief Метод, возвращающий модуль комплексного числа
      * \return Модуль комплексного числа
      */
     double GetModulus() const;
+
     /**
      * \brief Метод, возвращающий аргумент
      * \return Аргумент комплексного числа
      */
     double GetArgument() const;
+
     /**
      * \brief Метод, возвращающий комплексно сопряженное число
      * \return Комплексно сопряженное число
      */
-    Complex& GetConjugate() const;
+    Complex GetConjugate() const;
 
     /**
      * \brief Алгебраическое представление комплексного числа
@@ -79,13 +93,45 @@ public:
      * \return Третье (результат) комплексное число
      */
     Complex& Add(const Complex& other) const;
+
+    /**
+     * \brief 
+     * \param other 
+     * \return 
+     */
     Complex& Sub(const Complex& other) const;
+
+    /**
+     * \brief 
+     * \param other 
+     * \return 
+     */
     Complex& Mul(const Complex& other) const;
+
+    /**
+     * \brief 
+     * \param other 
+     * \return 
+     */
     Complex& Div(const Complex& other) const;
 
+    /**
+     * \brief 
+     * \param other 
+     * \return 
+     */
     bool AreEqual(const Complex& other) const;
 
 private:
+    char getSignForImagePart() const;
+
+    /**
+     * \brief Действительная часть комплексного числа.
+     */
     double re;
+
+    /**
+     * \brief Мнимая часть комплексного числа.
+     */
     double im;
 };
